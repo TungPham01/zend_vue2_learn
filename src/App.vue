@@ -1,30 +1,40 @@
+
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <button 
+      @click="title = 'xin chào duy tùng'"
+    >Thay đổi title từ component app.vue</button>
+    <HeaderComponent 
+      v-bind:title="title" 
+      @changeTitleEvent="handleChangeTitle"
+      @deleteUser="handleDeleteUser"
+    />
+    <ListUser />
+    <h1>{{ title }}</h1>
   </div>
 </template>
 
 <script>
+import HeaderComponent from './Components/HeaderComponent'
+import ListUser from './Components/ListUserComponent'
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      title: 'Welcome to Your Vue.js App',
+    }
+  }, 
+  components: {
+    HeaderComponent,
+    ListUser
+  },
+  methods: {
+    handleChangeTitle (data) {
+      this.title = data.title
+      console.log('handleChangeTitle App.vue')
+    },
+    handleDeleteUser (data) {
+      console.log('handleDeleteUser App.vue')
     }
   }
 }
