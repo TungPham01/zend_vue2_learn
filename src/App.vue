@@ -7,9 +7,11 @@
     <HeaderComponent 
       v-bind:title="title" 
       @changeTitleEvent="handleChangeTitle"
+    />
+    <ListUser
       @deleteUser="handleDeleteUser"
     />
-    <ListUser />
+    <RefComponent />
     <h1>{{ title }}</h1>
   </div>
 </template>
@@ -17,6 +19,7 @@
 <script>
 import HeaderComponent from './Components/HeaderComponent'
 import ListUser from './Components/ListUserComponent'
+import RefComponent from './Components/RefComponent'
 export default {
   name: 'app',
   data () {
@@ -26,7 +29,8 @@ export default {
   }, 
   components: {
     HeaderComponent,
-    ListUser
+    ListUser,
+    RefComponent
   },
   methods: {
     handleChangeTitle (data) {
@@ -34,9 +38,29 @@ export default {
       console.log('handleChangeTitle App.vue')
     },
     handleDeleteUser (data) {
-      console.log('handleDeleteUser App.vue')
+      console.log('handleDeleteUser App.vue', data)
     }
+  },
+  beforeCreate() {
+    console.log('beforeCreate', this.title)
+  },
+  created() {
+    console.log('created', this.title)
+  },
+  beforeMount() {
+    console.log('beforeMount', this.title)
+  },
+  mounted() {
+    console.log('mounted', this.title)
+  },
+  beforeDestroy() {
+    console.log('beforeDestroy')
+  },
+  destroyed() {
+    console.log('destroyed')
   }
+
+
 }
 </script>
 

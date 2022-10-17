@@ -27,8 +27,9 @@ export default {
         UserComponent
     },
     methods: {
-        deleteUser(e) {
-            console.log('deleteUser ListUserComponent.vue' ,e)
+        deleteUser(data) {
+            this.$emit('deleteUser', data )
+            console.log('deleteUser ListUserComponent.vue', data)
         }
     }
 }

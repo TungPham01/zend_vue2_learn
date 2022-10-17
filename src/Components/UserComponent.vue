@@ -19,12 +19,13 @@ export default {
     },
     data () {
         return {
-
+            test: 1
         }
     },
     methods: {
         handleDelete (e) {
-            console.log('User', e )
+            this.$emit('deleteUser', this.test )
+            console.log('UserComponent', this.test )
         }
     }
 }
